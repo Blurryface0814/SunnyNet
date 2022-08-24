@@ -1,0 +1,8 @@
+<launch>
+	<!--请注意路径最后需要加上斜杠“/”，不然会找不到路径-->
+	<param name="file_path" value="/media/luozhen/Blurryface SSD/数据集/点云语义分割/雨雾天气/cnn_denoising/test_01/"/>
+	<!--"-1"代表不限制帧数，显示所有点云文件-->
+	<param name="max_frame" value="-1"/>
+	<node name="point_cloud_denoising_view" pkg="point_cloud_denoising" type="visu.py" output="screen"/>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find point_cloud_denoising)/rviz/view.rviz" />
+</launch>

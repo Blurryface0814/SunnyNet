@@ -1,0 +1,5 @@
+<launch>
+	<param name="input_point_cloud_topic" value="/RosPublisher/ros_publisher"/>   <!--/RosPublisher/ros_publisher    /rslidar_points_16-->
+	<node name="point_cloud_denoising" pkg="point_cloud_denoising" type="lidar2img.py" output="screen"/>
+
+</launch>

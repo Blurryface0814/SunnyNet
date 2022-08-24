@@ -1,0 +1,19 @@
+<launch>
+	<!--ros topic-->
+	<param name="input_point_cloud_topic" value="/RosPublisher/ros_publisher"/>    <!--/RosPublisher/ros_publisher  /rslidar_points_16-->
+
+	<!--model-->
+	<param name="model_path" value="/home/luozhen/dev/catkin_weathernet/src/point_cloud_denoising/model_epoch34_mIoU=92.6.pth"/>
+	<param name="attention_type" value="eca"/>    <!--cbam, eca, senet, original-->
+	<param name="summary_model" value="false"/>
+
+	<!--after processing-->
+	<param name="after_processing" value="none"/>    <!--lror, none-->
+	<param name="remove_zero" value="true"/>
+	<param name="nb_points" value="2"/>
+	<param name="radius" value="0.5"/>
+	<param name="beta" value="1.0"/>
+
+	<node name="point_cloud_denoising" pkg="point_cloud_denoising" type="ros_denoising.py" output="screen"/>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find point_cloud_denoising)/rviz/denoising.rviz" />
+</launch>
