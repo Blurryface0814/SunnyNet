@@ -15,3 +15,10 @@ pip install -r requirements.txt
 ## Data preparation
 As described in the paper, we use the adverse weather dataset from `DENSE`. You can click [here](https://www.uni-ulm.de/index.php?id=101568) for registration and download. Thanks for the contribution of the DENSE dataset to the point cloud segmentation task under adverse weather.
 
+After downloading the data set, you may call the following commands on the terminal to train your model.
+```
+python main_dense.py --attention-type eca --epochs 30 --dataset-dir /PATH/TO/YOUR/DATASET
+```
+For `--attention-type`, you can select four modes: `cbam`, `eca`, `senet` and `original`.
+
+
