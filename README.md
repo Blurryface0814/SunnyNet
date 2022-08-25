@@ -5,7 +5,7 @@ We use `PyTorch` to implement a CNN to filter out rain and fog point clouds. Thi
 
 
 # Installation
-This software has only been tested on `ubuntu 18.04(x64)`, `torch==1.8.1`. Other version of PyTorch has not been tested. To install the required packages you may run
+This software has only been tested on `ubuntu 18.04(x64)`, `torch==1.8.1`. Other version of PyTorch has not been tested. To install the required packages you may call the following commands.
 ```
 pip install -r requirements.txt
 ```
@@ -41,7 +41,26 @@ python main_dense.py --attention-type eca --epochs 30 --dataset-dir /PATH/TO/YOU
 ```
 For `--attention-type`, you can select 4 modes: `cbam`, `eca`, `senet` and `original`. You can found the meaning of other parameters in `main_dense.py`.
 
+## Train from checkpoint
+If you want to continue training from the checkpoint, you may call the following commands.
+```
+python main_dense.py --attention-type eca --epochs THE-EPOCH-YOU-WANT --resume /PATH/TO/YOUR/CHECKPOINT --dataset-dir /PATH/TO/YOUR/DATASET
+```
+Note that checkpoint and model are different files. ***When testing, you should load the model file. When continuing training, you should load the checkpoint file.***
+
 
 # Test model
+If you want to use the model for testing, you may call the following commands. The terminal will output test results. We have provided a pre-training model based on eca, which is located in `./checkpoints/model_eca_2022-08-24_15_30_56/model_epoch3_mIoU=89.7.pth`.
+```
+python main_dense.py --attention-type eca --resume /PATH/TO/YOUR/MODEL --dataset-dir /PATH/TO/YOUR/DATASET --test True
+```
+
+# Test LROR
+We provide LROR as a post-processing step in our network. Please read our paper to understand its specific principle. To test the effect of lror, you may call the following commands.
+```
+python test_LROR.py --attention-type eca --model-path /PATH/TO/YOUR/MODEL --after-processing lror --remove-zero True
+```
+The `--remove-zero` parameter is used to remove the point clouds with XYZ coordinates of 0 in the DENSE dataset to reduce unnecessary calculation cost.
+
 
 
