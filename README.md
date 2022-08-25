@@ -63,9 +63,8 @@ python test_LROR.py --attention-type eca --model-path /PATH/TO/YOUR/MODEL --afte
 The `--remove-zero` parameter is used to remove the point clouds with XYZ coordinates of 0 in the DENSE dataset to reduce unnecessary calculation cost.
 
 
-# Using SunnyNet on ROS
-## Create your workspace
-First, create your workspace.
+# Using SunnyNet under ROS
+Create your workspace
 ```
 mkdir -p catkin_ws/src
 cd catkin_ws/src
@@ -77,4 +76,16 @@ cd catkin_ws
 catkin_make
 source devel/setup.bash
 ```
-
+To display the HDF5 point cloud files，you may call the following commands.
+```
+roslaunch point_cloud_denoising display.launch
+```
+To convert HDF5 point cloud files into 2D depth maps，you may call the following commands.
+```
+roslaunch point_cloud_denoising lidar2img.launch
+```
+To use sunnynet under the ROS framework，you may call the following commands.
+```
+roslaunch point_cloud_denoising point_cloud_denoising.launch
+```
+If you want to use SunnyNet from HDF5 point cloud files under the ROS framework，you need to open `point_ cloud_ denoising.launch` and revise `<node name="point_cloud_denoising" pkg="point_cloud_denoising" type="ros_denoising.py" output="screen"/>` to `<node name="point_cloud_denoising" pkg="point_cloud_denoising" type="ros_denoising_from_hdf5.py" output="screen"/>`.
