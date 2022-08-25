@@ -1,6 +1,5 @@
 # SunnyNet
-Rain and fog point cloud filtering network.
-
+## Rain and fog point cloud filtering network.
 We use `PyTorch` to implement a CNN to filter out rain and fog point clouds. This approach is mainly based on our paper `"Semantic Segmentation Based Rain and Fog Filtering Only by LiDAR Point Clouds"` published at the 2022 IEEE International Conference on Unmanned Systems (ICUS).
 
 
@@ -55,6 +54,7 @@ If you want to use the model for testing, you may call the following commands. T
 python main_dense.py --attention-type eca --resume /PATH/TO/YOUR/MODEL --dataset-dir /PATH/TO/YOUR/DATASET --test True
 ```
 
+
 # Test LROR
 We provide LROR as a post-processing step in our network. Please read our paper to understand its specific principle. To test the effect of lror, you may call the following commands.
 ```
@@ -62,5 +62,7 @@ python test_LROR.py --attention-type eca --model-path /PATH/TO/YOUR/MODEL --afte
 ```
 The `--remove-zero` parameter is used to remove the point clouds with XYZ coordinates of 0 in the DENSE dataset to reduce unnecessary calculation cost.
 
+
+# Using SunnyNet on ROS
 
 
