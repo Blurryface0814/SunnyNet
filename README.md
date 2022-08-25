@@ -84,7 +84,7 @@ To convert HDF5 point cloud files into 2D depth maps，you may call the followin
 ```
 roslaunch point_cloud_denoising lidar2img.launch
 ```
-To use sunnynet under the ROS framework，you may call the following commands.
+To use SunnyNet under the ROS framework，you may call the following commands.
 ```
 roslaunch point_cloud_denoising point_cloud_denoising.launch
 ```
